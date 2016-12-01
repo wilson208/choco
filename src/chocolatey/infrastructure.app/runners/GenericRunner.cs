@@ -121,6 +121,8 @@ Chocolatey is not an official build (bypassed with --allow-unofficial).
 
         public void fail_when_license_is_missing_or_invalid_if_requested(ChocolateyConfiguration config)
         {
+            if (config.CommandName.Trim().Equals("feature")) return;
+
             if (!config.Features.FailOnInvalidOrMissingLicense) return;
 
             if (!config.Information.IsLicensedVersion) throw new ApplicationException("License is missing or invalid.");
